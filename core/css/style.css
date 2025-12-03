@@ -1,0 +1,115 @@
+/* ===== Basic Reset ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: system-ui, Arial, sans-serif;
+    background: #f8f9fb;
+    color: #222;
+}
+
+/* ===== Global Container ===== */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 16px;
+}
+
+/* ===== Header ===== */
+.header {
+    background: #007bff;
+    color: white;
+    padding: 16px 0;
+    margin-bottom: 12px;
+}
+
+/* ===== Tabs ===== */
+.tab-nav {
+    background: white;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+.tabs {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.tab {
+    padding: 8px 16px;
+    background: #eee;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.tab.active {
+    background: #007bff;
+    color: white;
+}
+
+/* ===== Sections ===== */
+.tab-content {
+    display: none;
+    padding: 30px 0;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.section-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+/* ===== Cards ===== */
+.card, .chart-card {
+    background: #fafafa;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
+
+.chart-box {
+    height: 320px;
+    background: #e6e9ef;
+    border-radius: 12px;
+}
+
+/* ===== Grid ===== */
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+/* ===== Responsive Table ===== */
+.table-responsive {
+    overflow-x: auto;
+}
+
+.nice-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.nice-table th {
+    background: #f0f0f0;
+    padding: 8px;
+    text-align: left;
+    font-weight: 700;
+}
+
+.nice-table td {
+    padding: 8px;
+    border-top: 1px solid #e3e3e3;
+}
