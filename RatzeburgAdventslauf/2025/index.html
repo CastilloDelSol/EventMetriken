@@ -17,14 +17,9 @@
             .then(html => {
                 // CSS & JS Platzhalter ersetzen
                 html = html.replace("{{EVENT_NAME}}", "Ratzeburger Adventslauf");
-                html = html.replace("{{EVENT_YEAR}}", "2024");
-                html = html.replace("{{EVENT_CSS}}",
-                    `<link rel="stylesheet" href="/events/RatzeburgerAdventslauf/2024/event.css">`
-                );
-                html = html.replace("{{EVENT_JS}}",
-                    `<script src="/events/RatzeburgerAdventslauf/2024/event.js"></script>`
-                );
-
+                html = html.replace("{{EVENT_YEAR}}", "2025");
+                html = html.replace("{{EVENT_CSS}}",`<link rel="stylesheet" href="/events/RatzeburgerAdventslauf/2024/event.css">`);
+                html = html.replace("{{EVENT_JS}}",`<script src="/events/RatzeburgerAdventslauf/2025/event.js"></script>`);
                 document.write(html);
             });
     </script>
