@@ -2,24 +2,34 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8" />
-
     <script>
-        window.EVENT_BASE = "/events/RatzeburgerAdventslauf/2025";
+        // relativer Pfad, wichtig für GitHub Pages!
+        window.EVENT_BASE = "../.."; 
+        window.EVENT_NAME = "Ratzeburger Adventslauf";
+        window.EVENT_YEAR = "2025";
+        window.EVENT_FOLDER = "events/RatzeburgerAdventslauf/2025";
     </script>
 </head>
 
 <body>
 
-    <!-- lädt die zentrale Template-HTML -->
     <script>
-        fetch("/core/template.html")
+        // relativer fetch – funktioniert auf GitHub Pages
+        fetch("../../core/template.html")
             .then(r => r.text())
             .then(html => {
-                // CSS & JS Platzhalter ersetzen
-                html = html.replace("{{EVENT_NAME}}", "Ratzeburger Adventslauf");
-                html = html.replace("{{EVENT_YEAR}}", "2025");
-                html = html.replace("{{EVENT_CSS}}",`<link rel="stylesheet" href="/events/RatzeburgerAdventslauf/2024/event.css">`);
-                html = html.replace("{{EVENT_JS}}",`<script src="/events/RatzeburgerAdventslauf/2025/event.js"></script>`);
+
+                html = html.replace("{{EVENT_NAME}}", window.EVENT_NAME);
+                html = html.replace("{{EVENT_YEAR}}", window.EVENT_YEAR);
+
+                html = html.replace("{{EVENT_CSS}}",
+                    `<link rel="stylesheet" href="../../events/RatzeburgerAdventslauf/2025/event.css">`
+                );
+
+                html = html.replace("{{EVENT_JS}}",
+                    `<script src="../../events/RatzeburgerAdventslauf/2025/event.js"></script>`
+                );
+
                 document.write(html);
             });
     </script>
