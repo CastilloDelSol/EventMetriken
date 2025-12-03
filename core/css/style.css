@@ -1,115 +1,67 @@
-/* ===== Basic Reset ===== */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
 body {
-    font-family: system-ui, Arial, sans-serif;
-    background: #f8f9fb;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
     color: #222;
 }
 
-/* ===== Global Container ===== */
 .container {
-    width: 100%;
     max-width: 1200px;
-    margin: auto;
-    padding: 0 16px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-/* ===== Header ===== */
-.header {
-    background: #007bff;
-    color: white;
-    padding: 16px 0;
-    margin-bottom: 12px;
+h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 10px;
 }
 
-/* ===== Tabs ===== */
-.tab-nav {
-    background: white;
-    border-bottom: 1px solid #ddd;
-    position: sticky;
-    top: 0;
-    z-index: 20;
-}
-
-.tabs {
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    padding: 10px 0;
-}
-
-.tab {
-    padding: 8px 16px;
-    background: #eee;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-.tab.active {
-    background: #007bff;
-    color: white;
-}
-
-/* ===== Sections ===== */
-.tab-content {
-    display: none;
-    padding: 30px 0;
-}
-
-.tab-content.active {
-    display: block;
-}
-
-.section-title {
+h2 {
+    margin-top: 40px;
     font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 16px;
 }
 
-/* ===== Cards ===== */
-.card, .chart-card {
-    background: #fafafa;
-    padding: 16px;
-    border-radius: 12px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-    margin-bottom: 20px;
-}
-
-.chart-box {
-    height: 320px;
-    background: #e6e9ef;
-    border-radius: 12px;
-}
-
-/* ===== Grid ===== */
 .grid-3 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+    gap: 20px;
 }
 
-/* ===== Responsive Table ===== */
-.table-responsive {
-    overflow-x: auto;
+/* Tabs */
+input[type="radio"] { display: none; }
+
+.tab-buttons {
+    display: flex;
+    gap: 10px;
+    margin: 30px 0;
 }
 
-.nice-table {
-    width: 100%;
-    border-collapse: collapse;
+.tab-buttons label {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    background: #ddd;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
-.nice-table th {
-    background: #f0f0f0;
-    padding: 8px;
-    text-align: left;
-    font-weight: 700;
+#tab1:checked ~ .tab-buttons label[for="tab1"],
+#tab2:checked ~ .tab-buttons label[for="tab2"] {
+    background: #007bff;
+    color: #fff;
 }
 
-.nice-table td {
-    padding: 8px;
-    border-top: 1px solid #e3e3e3;
+.tab-content {
+    display: none;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+#tab1:checked ~ .content1,
+#tab2:checked ~ .content2 {
+    display: block;
 }
