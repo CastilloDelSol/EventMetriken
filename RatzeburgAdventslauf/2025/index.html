@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+
+    <script>
+        window.EVENT_BASE = "/events/RatzeburgerAdventslauf/2024";
+    </script>
+</head>
+
+<body>
+
+    <!-- lädt die zentrale Template-HTML -->
+    <script>
+        fetch("/core/template.html")
+            .then(r => r.text())
+            .then(html => {
+                // CSS & JS Platzhalter ersetzen
+                html = html.replace("{{EVENT_NAME}}", "Ratzeburger Adventslauf");
+                html = html.replace("{{EVENT_YEAR}}", "2024");
+                html = html.replace("{{EVENT_CSS}}",
+                    `<link rel="stylesheet" href="/events/RatzeburgerAdventslauf/2024/event.css">`
+                );
+                html = html.replace("{{EVENT_JS}}",
+                    `<script src="/events/RatzeburgerAdventslauf/2024/event.js"></script>`
+                );
+
+                document.write(html);
+            });
+    </script>
+
+</body>
+</html>
