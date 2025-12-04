@@ -23,6 +23,12 @@
             "name": "Bockis Biest - Inseltriathlon Ratzeburg reloaded",
             "type": "triathlon",
             "years": [2024]
+        },
+        {
+            "id": "7777",
+            "name": "7TT - 7 Türme Triathlon Lübeck",
+            "type": "triathlon",
+            "years": [2016]
         }
     ]
 }
