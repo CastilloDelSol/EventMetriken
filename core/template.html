@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{EVENT_NAME}} – {{EVENT_YEAR}}</title>
+<title>{{EVENT_NAME}} – {{EVENT_YEAR}}</title>
 
-    {{CORE_CSS}}
-    {{EVENT_CSS}}
+<link rel="stylesheet" href="../core/css/style.css"> 
+{{EVENT_CSS}}
+
 </head>
 
 <body>
 
-<div class="container">
+<h1>{{EVENT_NAME}} – {{EVENT_YEAR}}</h1>
 
-    <h1 id="event-title">{{EVENT_NAME}} – {{EVENT_YEAR}}</h1>
+<!-- Tabs etc. -->
+<div id="content">…</div>
 
-    <div id="content">
-        <!-- Core HTML goes here -->
-    </div>
-
-</div>
-
-{{CORE_JS}}
+<script src="../core/js/core.js"></script>
 {{EVENT_JS}}
 
 </body>
