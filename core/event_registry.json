@@ -1,0 +1,20 @@
+{
+  "b1e5": {
+    "name": "Bockis Biest - Inseltriathlon Ratzeburg reloaded",
+    "location": "Ratzeburg",
+    "years": ["2024"],
+    "status": "active"
+  },
+  "ad4f": {
+    "name": "Ratzeburger Adventslauf",
+    "location": "Ratzeburg",
+    "years": ["2025"],
+    "status": "active"
+  },
+  "1b2a": {
+    "name": "Möllner Silvesterlauf",
+    "location": "Mölln",
+    "years": ["2025"],
+    "status": "active"
+  }
+}
