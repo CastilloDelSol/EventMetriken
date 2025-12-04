@@ -1,46 +1,20 @@
-(function() {
+(async function() {
 
-    async function loadTemplate() {
+    const base = window.EVENT_BASE || ".";
 
-        const event = window.EVENT;
+    // template laden
+    const tpl = await fetch(`${base}/core/template.html`).then(r => r.text());
 
-        if (!event || !event.folder)
-            return document.body.innerHTML = "<p>Event config fehlt.</p>";
-
-        // Absoluter Web-Pfad dieses Events
-        const basePath = location.pathname.replace(/\/index\.html$/, "");
-
-        // Template holen
-        const templatePath = basePath + "/../../core/template.html";
-        const template = await fetch(templatePath).then(r => r.text());
-
-        // Core Pfad berechnen
-        const coreBase = basePath + "/../../core";
-
-        let html = template;
-
-        html = html.replace("{{EVENT_NAME}}", event.name);
-        html = html.replace("{{EVENT_YEAR}}", event.year);
-
-        html = html.replace("{{CORE_CSS}}",
-            `<link rel="stylesheet" href="${coreBase}/css/style.css">`
+    let html = tpl
+        .replace(/{{EVENT_NAME}}/g, window.EVENT_NAME)
+        .replace(/{{EVENT_YEAR}}/g, window.EVENT_YEAR)
+        .replace("{{EVENT_CSS}}",
+            `<link rel="stylesheet" href="${base}/events/RatzeburgAdventslauf/${window.EVENT_YEAR}/event.css">`
+        )
+        .replace("{{EVENT_JS}}",
+            `<script src="${base}/events/RatzeburgAdventslauf/${window.EVENT_YEAR}/event.js"></script>`
         );
 
-        html = html.replace("{{CORE_JS}}",
-            `<script type="module" src="${coreBase}/js/core.js"></script>`
-        );
-
-        html = html.replace("{{EVENT_CSS}}",
-            `<link rel="stylesheet" href="/${event.folder}/event.css">`
-        );
-
-        html = html.replace("{{EVENT_JS}}",
-            `<script src="/${event.folder}/event.js"></script>`
-        );
-
-        document.write(html);
-    }
-
-    loadTemplate();
+    document.write(html);
 
 })();
