@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{EVENT_NAME}} – Statistik</title>
+    <meta charset="UTF-8">
 
-    <!-- Core Styles -->
-    <link rel="stylesheet" href="/core/css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{EVENT_NAME}} – {{EVENT_YEAR}}</title>
 
-    <!-- Event Overrides -->
+    {{CORE_CSS}}
     {{EVENT_CSS}}
 </head>
 
@@ -18,43 +16,13 @@
 
     <h1 id="event-title">{{EVENT_NAME}} – {{EVENT_YEAR}}</h1>
 
-    <!-- Tab buttons -->
-    <input type="radio" name="tabs" id="tab1" checked />
-    <input type="radio" name="tabs" id="tab2" />
-
-    <div class="tab-buttons">
-        <label for="tab1">Übersicht</label>
-        <label for="tab2">Statistiken</label>
-    </div>
-
-    <!-- TAB 1 -->
-    <div class="tab-content content1">
-
-        <h2>Teilnehmerübersicht</h2>
-        <div id="donuts-overview" class="grid-3"></div>
-
-        <h2>Nationalitäten</h2>
-        <div id="nationality-table"></div>
-
-    </div>
-
-    <!-- TAB 2 -->
-    <div class="tab-content content2">
-
-        <h2>Altersklassen</h2>
-        <div id="ak-charts"></div>
-
-        <h2>Zeithistogramme</h2>
-        <div id="histograms"></div>
-
+    <div id="content">
+        <!-- Core HTML goes here -->
     </div>
 
 </div>
 
-<!-- Core JS -->
-<script type="module" src="/core/js/core.js"></script>
-
-<!-- Event-specific JS -->
+{{CORE_JS}}
 {{EVENT_JS}}
 
 </body>
