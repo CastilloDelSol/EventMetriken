@@ -1,21 +1,32 @@
 // loader.js
 
+// Kleine Helferfunktion um // oder /./ zu entfernen
+function normalizePath(path) {
+    return path
+        .replace(/\/+/g, "/")        // mehrere Slashes zu einem
+        .replace(/\/\.\//g, "/")     // /./ entfernen
+        .replace(/\/$/, "");         // trailing slash weg
+}
+
 (async function() {
 
     // 1. Loader Position (absolute URL)
     const script = document.currentScript;
     const loaderUrl = new URL(script.src);
-    const loaderDir = loaderUrl.pathname.replace(/\/loader\.js$/, "");
+    let loaderDir = loaderUrl.pathname.replace(/\/loader\.js$/, "");
+    loaderDir = normalizePath(loaderDir);
 
     // 2. Core dir
-    const coreDir = loaderDir.replace(/\/js$/, "");
+    let coreDir = loaderDir.replace(/\/js$/, "");
+    coreDir = normalizePath(coreDir);
 
     // 3. Event dir (URL der Seite, wo index.html liegt)
     const pageUrl = new URL(window.location.href);
-    const eventDir = pageUrl.pathname.replace(/\/index\.html$/, "");
+    let eventDir = pageUrl.pathname.replace(/\/index\.html$/, "");
+    eventDir = normalizePath(eventDir);
 
     // 4. Template laden
-    const templateUrl = coreDir + "/template.html";
+    const templateUrl = normalizePath(coreDir + "/template.html");
     const template = await fetch(templateUrl).then(r => r.text());
 
     // 5. Platzhalter ersetzen
@@ -23,17 +34,17 @@
         .replace(/{{EVENT_NAME}}/g, window.EVENT.name)
         .replace(/{{EVENT_YEAR}}/g, window.EVENT.year)
 
-        // Core includes (absolute korrekt)
+        // Core includes
         .replace("{{CORE_CSS}}",
-            `<link rel="stylesheet" href="${coreDir}/css/style.css">`)
+            `<link rel="stylesheet" href="${normalizePath(coreDir + "/css/style.css")}">`)
         .replace("{{CORE_JS}}",
-            `<script src="${coreDir}/js/core.js"></script>`)
+            `<script src="${normalizePath(coreDir + "/js/core.js")}"></script>`)
 
-        // Event includes (korrekt relativ zum Event)
+        // Event includes
         .replace("{{EVENT_CSS}}",
-            `<link rel="stylesheet" href="${eventDir}/event.css">`)
+            `<link rel="stylesheet" href="${normalizePath(eventDir + "/event.css")}">`)
         .replace("{{EVENT_JS}}",
-            `<script src="${eventDir}/event.js"></script>`);
+            `<script src="${normalizePath(eventDir + "/event.js")}"></script>`);
 
     // 6. Template rendern
     document.body.innerHTML = html;
