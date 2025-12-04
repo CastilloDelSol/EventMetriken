@@ -33,18 +33,12 @@ function normalizePath(path) {
     let html = template
         .replace(/{{EVENT_NAME}}/g, window.EVENT.name)
         .replace(/{{EVENT_YEAR}}/g, window.EVENT.year)
+        .replace("{{CORE_CSS}}", `<link rel="stylesheet" href="${coreDir}/css/style.css">`)
+        .replace("{{CORE_JS}}", `<script src="${coreDir}/js/core.js"></script>`)
+        .replace("{{EVENT_CSS}}", `<link rel="stylesheet" href="${eventDir}/event.css">`)
+        .replace("{{EVENT_JS}}", `<script src="${eventDir}/event.js"></script>`)
+        .trim();   // Entfernt whitespace am Anfang/Ende
 
-        // Core includes
-        .replace("{{CORE_CSS}}",
-            `<link rel="stylesheet" href="${normalizePath(coreDir + "/css/style.css")}">`)
-        .replace("{{CORE_JS}}",
-            `<script src="${normalizePath(coreDir + "/js/core.js")}"></script>`)
-
-        // Event includes
-        .replace("{{EVENT_CSS}}",
-            `<link rel="stylesheet" href="${normalizePath(eventDir + "/event.css")}">`)
-        .replace("{{EVENT_JS}}",
-            `<script src="${normalizePath(eventDir + "/event.js")}"></script>`);
 
     // 6. Template rendern
     document.body.innerHTML = html;
