@@ -1,26 +1,139 @@
 {
-  "splits": [
-    {
-      "name": "Ziel",
-      "distance_km": 7.5
-    }
-  ],
-  "finisher": 669,
-  "dns": 0,
-  "dnf": 0,
-  "dsq": 0,
-  "M": {
-    "Top10": [],
-    "histogram": {
-      "buckets": []
-    },
-    "statistics": {}
+  "event_info": {
+    "name": "Ratzeburger Adventslauf",
+	"count": 35,
+    "year": 2025,
+    "location": "Ratzeburg, DE",
+    "timezone": "Europe/Berlin",
+    "website": "https://adventslauf.de",
+    "contact": "info@adventslauf.de",
+    "organizer": "Ratzeburger SV - Abteilung Triathlon",
+    "race_day": "2025-11-30",
+	"show_map": true,
+	
+    "poi": [
+      {
+        "name": "Startnummernausgabe / Registration",
+        "lat": 53.69812,
+        "lon": 10.77028
+      },
+      {
+        "name": "Streckenteilung 26km / 7.5km",
+        "lat": 53.697821,
+        "lon": 10.782311
+      }
+    ]
   },
-  "W": {
-    "Top10": [],
-    "histogram": {
-      "buckets": []
+
+  "weather": null,
+
+  "theme": {
+    "primary": "#d40000",
+    "secondary": "#333333",
+    "accent": "#ffaa00"
+  },
+
+  "races": [
+    {
+      "race_id": "26km",
+      "name": "Lauf um den großen Ratzeburger See",
+      "length_km": 26.0,
+      "start_hhmmss": "11:15:00",
+      "course_gpx": "26k0_course.gpx",
+      "course_color": "blue",
+	  "show_map": true,
+
+      "splits": [
+        {
+          "split_id": "start",
+          "name": "Start",
+          "km": 0.0,
+          "type": "run",
+          "major": true,
+          "lat": 53.699217,
+          "lon": 10.774700
+        },
+        {
+          "split_id": "rothenhusen",
+          "name": "Rothenhusen",
+          "km": 12.5,
+          "type": "run",
+          "major": true,
+          "lat": 53.782943,
+          "lon": 10.766396
+        },
+        {
+          "split_id": "finish",
+          "name": "Ziel",
+          "km": 26.0,
+          "type": "run",
+          "major": true,
+          "lat": 53.699039,
+          "lon": 10.769678
+        }
+      ]
     },
-    "statistics": {}
-  }
+
+    {
+      "race_id": "7_5km",
+      "name": "Lauf um den Küchensee",
+      "length_km": 7.5,
+      "start_hhmmss": "11:15:00",
+      "course_gpx": "7k5_course.gpx",
+      "course_color": "green",
+	  "show_map": true,
+
+      "splits": [
+        {
+          "split_id": "start",
+          "name": "Start",
+          "km": 0.0,
+          "type": "run",
+          "major": true,
+          "lat": 53.699217,
+          "lon": 10.774700
+        },
+        {
+          "split_id": "finish",
+          "name": "Ziel",
+          "km": 7.5,
+          "type": "run",
+          "major": true,
+          "lat": 53.699039,
+          "lon": 10.769678
+        }
+      ]
+    },
+
+    {
+      "race_id": "1_5km",
+      "name": "Kinderlauf",
+      "length_km": 1.5,
+      "start_hhmmss": "11:00:00",
+      "course_gpx": "1k5_course.gpx",
+      "course_color": "orange",
+	  "show_map": true,
+
+      "splits": [
+        {
+          "split_id": "start",
+          "name": "Start",
+          "km": 0.0,
+          "type": "run",
+          "major": true,
+          "lat": 53.699217,
+          "lon": 10.774700
+        },
+        {
+          "split_id": "finish",
+          "name": "Ziel",
+          "km": 1.5,
+          "type": "run",
+          "major": true,
+          "lat": 53.699039,
+          "lon": 10.769678
+        }
+      ]
+    }
+  ]
 }
