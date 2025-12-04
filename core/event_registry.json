@@ -2,9 +2,27 @@
     "events": [
         {
             "id": "f00d",
-            "year": 2025,
             "name": "Fun Sample Event",
-            "path": "events/f00d/2025"
+            "type": "running",
+            "years": [2025]
+        },
+        {
+            "id": "01ad",
+            "name": "Ratzeburger Adventslauf",
+            "type": "running",
+            "years": [2024, 2025]
+        },
+        {
+            "id": "5aef",
+            "name": "Vereinsmeisterschaft RSV-Triathlon & Friends",
+            "type": "triathlon",
+            "years": [2025]
+        },
+        {
+            "id": "b1e5",
+            "name": "Bockis Biest - Inseltriathlon Ratzeburg reloaded",
+            "type": "triathlon",
+            "years": [2024]
         }
     ]
 }
