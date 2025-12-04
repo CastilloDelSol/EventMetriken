@@ -1,37 +1,24 @@
-// core.js – zentraler Loader
+// core.js
 
-export let EVENT = null;
+importScripts;
 
-async function loadEventData() {
-    const base = window.EVENT_BASE; // von event/index.html gesetzt
+/* Minimal core that loads JSON data */
 
-    const res = await fetch(`${base}/data/results.json`);
-    const hist = await fetch(`${base}/data/histogram.json`);
-    const meta = await fetch(`${base}/data/meta.json`);
-
-    EVENT = {
-        results: await res.json(),
-        histogram: await hist.json(),
-        meta: await meta.json()
-    };
-}
-
-// ------------------------------------------------------------
-// Bootstrapping – wird nach Laden gestartet
-// ------------------------------------------------------------
-async function initCore() {
-
-    await loadEventData();
-
-    // Deine Visualisierungsmodi hier starten
-    import("/core/js/modules/donuts.js").then(m => m.render(EVENT));
-    import("/core/js/modules/histograms.js").then(m => m.render(EVENT));
-    import("/core/js/modules/agegroups.js").then(m => m.render(EVENT));
-
-    // Event-overrides laden
-    if (window.EVENT_JS_LOADER) {
-        window.EVENT_JS_LOADER(EVENT);
+(async function() {
+    function loadJSON(url) {
+        return fetch(url).then(r => r.json());
     }
-}
 
-initCore();
+    const base = window.location.pathname.replace(/\/index\.html$/, "");
+    const dataDir = base + "/data";
+
+    const meta = await loadJSON(dataDir + "/meta.json");
+    const results = await loadJSON(dataDir + "/results.json");
+    const stats = await loadJSON(dataDir + "/statistics.json");
+
+    document.getElementById("results").innerText =
+        `Loaded ${results.length} results`;
+
+    document.getElementById("statistics").innerText =
+        JSON.stringify(stats);
+})();
