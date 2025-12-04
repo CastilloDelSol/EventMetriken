@@ -20,7 +20,7 @@ function normalizePath(path) {
     let coreDir = loaderDir.replace(/\/js$/, "");
     coreDir = normalizePath(coreDir);
 
-    // 3. Event dir (URL der Seite, wo index.html liegt)
+    // 3. Event dir (URL der Seite)
     const pageUrl = new URL(window.location.href);
     let eventDir = pageUrl.pathname.replace(/\/index\.html$/, "");
     eventDir = normalizePath(eventDir);
@@ -37,10 +37,9 @@ function normalizePath(path) {
         .replace("{{CORE_JS}}", `<script src="${coreDir}/js/core.js"></script>`)
         .replace("{{EVENT_CSS}}", `<link rel="stylesheet" href="${eventDir}/event.css">`)
         .replace("{{EVENT_JS}}", `<script src="${eventDir}/event.js"></script>`)
-        .trim();   // Entfernt whitespace am Anfang/Ende
+        .trim();
 
-
-    // 6. Template rendern
+    // 6. HTML setzen
     document.body.innerHTML = html;
 
 })();
