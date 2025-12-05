@@ -20,7 +20,7 @@ function normalizePath(path) {
     let coreDir = loaderDir.replace(/\/js$/, "");
     coreDir = normalizePath(coreDir);
 
-    // 3. Event dir (URL der Seite)
+    // 3. Event dir (URL der Seite, wo index.html liegt)
     const pageUrl = new URL(window.location.href);
     let eventDir = pageUrl.pathname.replace(/\/index\.html$/, "");
     eventDir = normalizePath(eventDir);
@@ -44,11 +44,13 @@ function normalizePath(path) {
 
         .trim();
 
-    // 6. HTML setzen
+    // 6. Template rendern
     document.body.innerHTML = html;
 
-    // 7. Sichtbar machen (fixes FOUC)
+    // 7. Nach dem Laden sichtbar machen
     const app = document.getElementById("app");
-    if (app) app.classList.remove("app-hidden");
+    if (app) {
+        app.classList.remove("app-not-ready");
+    }
 
 })();
