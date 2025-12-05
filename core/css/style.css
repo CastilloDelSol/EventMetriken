@@ -1,27 +1,26 @@
-/* Hide app until loader finishes (prevents FOUC) */
+/* Hide app until loader decides it's ready (prevents FOUC entirely) */
 .app-not-ready {
     visibility: hidden;
 }
 
-/* ---- CORE STYLES WRAPPED IN .core FOR LOWER SPECIFICITY ---- */
-.core body {
+body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: #fafafa;
     color: #222;
 }
 
-.core .header {
+.header {
     background: #333;
     color: white;
     padding: 20px;
 }
 
-.core .content {
+.content {
     padding: 20px;
 }
 
-.core .footer {
+.footer {
     margin-top: 40px;
     padding: 15px;
     text-align: center;
