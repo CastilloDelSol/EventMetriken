@@ -2,8 +2,14 @@
 
 .header {
   background: #03d65f;
+  color: #FFFFFF;
 }
 
 .content h2 {
   color: #0055aa;
+}
+
+.footer {
+  background: #03d65f;
+  color: #FFFFFF;
 }
