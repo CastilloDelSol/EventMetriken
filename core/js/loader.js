@@ -43,7 +43,14 @@ function normalizePath(path) {
     document.body.innerHTML = html;
 
     // 7. Sichtbar machen (fixes FOUC)
+    /*
     const app = document.getElementById("app");
     if (app) app.classList.remove("app-hidden");
+    */
+
+    window.addEventListener("load", () => {
+    document.body.style.visibility = "visible";
+});
+
 
 })();
