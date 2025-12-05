@@ -33,24 +33,25 @@ function normalizePath(path) {
     let html = template
         .replace(/{{EVENT_NAME}}/g, window.EVENT.name)
         .replace(/{{EVENT_YEAR}}/g, window.EVENT.year)
-
-        // CSS: event first → core second
-        .replace("{{EVENT_CSS}}", `<link rel="stylesheet" href="${eventDir}/event.css">`)
+        
+        // CSS: core first, then event (event overrides core)
         .replace("{{CORE_CSS}}", `<link rel="stylesheet" href="${coreDir}/css/style.css">`)
-
-        // JS: core first → event second
+        .replace("{{EVENT_CSS}}", `<link rel="stylesheet" href="${eventDir}/event.css">`)
+        
+        // JS: core first, then event
         .replace("{{CORE_JS}}", `<script src="${coreDir}/js/core.js"></script>`)
         .replace("{{EVENT_JS}}", `<script src="${eventDir}/event.js"></script>`)
-
         .trim();
 
     // 6. Template rendern
     document.body.innerHTML = html;
 
-    // 7. Nach dem Laden sichtbar machen
-    const app = document.getElementById("app");
-    if (app) {
-        app.classList.remove("app-not-ready");
-    }
+    // 7. Sichtbar machen, wenn alles (inkl. CSS) geladen ist
+    window.addEventListener("load", () => {
+        const app = document.getElementById("app");
+        if (app) {
+            app.classList.remove("app-not-ready");
+        }
+    });
 
 })();
