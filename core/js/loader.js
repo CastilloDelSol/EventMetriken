@@ -43,15 +43,7 @@ function normalizePath(path) {
     document.body.innerHTML = html;
 
     // 7. Sichtbar machen (fixes FOUC)
-    /*
     const app = document.getElementById("app");
-    if (app) app.classList.remove("app-not-ready");
-    */
-
-    // 7. App erst sichtbar machen, wenn ALLES geladen ist (inkl. event.css)
-    window.addEventListener("load", () => {
-        const app = document.getElementById("app");
-        if (app) app.classList.remove("app-not-ready");
-    });
+    if (app) app.classList.remove("app-hidden");
 
 })();
