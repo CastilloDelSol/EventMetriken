@@ -1,61 +1,46 @@
 // loader.js
 
-// Kleine Helferfunktion um // oder /./ zu entfernen
 function normalizePath(path) {
     return path
-        .replace(/\/+/g, "/")        // mehrere Slashes zu einem
-        .replace(/\/\.\//g, "/")     // /./ entfernen
-        .replace(/\/$/, "");         // trailing slash weg
+        .replace(/\/+/g, "/")
+        .replace(/\/\.\//g, "/")
+        .replace(/\/$/, "");
 }
 
 (async function() {
 
-    // 1. Loader Position (absolute URL)
     const script = document.currentScript;
     const loaderUrl = new URL(script.src);
-    let loaderDir = loaderUrl.pathname.replace(/\/loader\.js$/, "");
-    loaderDir = normalizePath(loaderDir);
 
-    // 2. Core dir
-    let coreDir = loaderDir.replace(/\/js$/, "");
-    coreDir = normalizePath(coreDir);
+    let loaderDir = normalizePath(loaderUrl.pathname.replace(/\/loader\.js$/, ""));
+    let coreDir = normalizePath(loaderDir.replace(/\/js$/, ""));
 
-    // 3. Event dir (URL der Seite)
     const pageUrl = new URL(window.location.href);
-    let eventDir = pageUrl.pathname.replace(/\/index\.html$/, "");
-    eventDir = normalizePath(eventDir);
+    let eventDir = normalizePath(pageUrl.pathname.replace(/\/index\.html$/, ""));
 
-    // 4. Template laden
+    // --- Template Laden ---
     const templateUrl = normalizePath(coreDir + "/template.html");
     const template = await fetch(templateUrl).then(r => r.text());
 
-    // 5. Platzhalter ersetzen
-    // IMPORTANT: EVENT_CSS is removed here because we will load it manually.
+    // --- Platzhalter ersetzen ---
     let html = template
         .replace(/{{EVENT_NAME}}/g, window.EVENT.name)
         .replace(/{{EVENT_YEAR}}/g, window.EVENT.year)
         .replace("{{CORE_CSS}}", `<link rel="stylesheet" href="${coreDir}/css/style.css">`)
-        .replace("{{EVENT_CSS}}", "")   // removed, we load event.css manually
+        .replace("{{EVENT_CSS}}", `<link rel="stylesheet" href="${eventDir}/event.css">`)
         .replace("{{CORE_JS}}", `<script src="${coreDir}/js/core.js"></script>`)
         .replace("{{EVENT_JS}}", `<script src="${eventDir}/event.js"></script>`)
         .trim();
 
-    // 6. HTML setzen
+    // --- HTML Setzen ---
     document.body.innerHTML = html;
 
-    // 7. EVENT CSS dynamisch laden und WARTEN bis es fertig geladen ist
-    const eventCssLink = document.createElement("link");
-    eventCssLink.rel = "stylesheet";
-    eventCssLink.href = `${eventDir}/event.css`;
-
-    eventCssLink.onload = () => {
-        // Jetzt ist event.css vollständig geladen → App anzeigen
+    // --- Warten bis ALLES geladen ist (inkl. CSS!) ---
+    window.addEventListener("load", () => {
         const app = document.getElementById("app");
         if (app) {
             app.classList.remove("app-not-ready");
         }
-    };
-
-    document.head.appendChild(eventCssLink);
+    });
 
 })();
