@@ -14,4 +14,4 @@ window.renderLineChart = function (selector, labels, values) {
 };
 
 // Placeholder for future chart code
-console.log("chart_core loaded");
+console.log("charts.js loaded");
