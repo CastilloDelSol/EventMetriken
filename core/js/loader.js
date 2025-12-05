@@ -30,20 +30,32 @@ function normalizePath(path) {
     const template = await fetch(templateUrl).then(r => r.text());
 
     // 5. Platzhalter ersetzen
+    // IMPORTANT: EVENT_CSS is removed here because we will load it manually.
     let html = template
         .replace(/{{EVENT_NAME}}/g, window.EVENT.name)
         .replace(/{{EVENT_YEAR}}/g, window.EVENT.year)
         .replace("{{CORE_CSS}}", `<link rel="stylesheet" href="${coreDir}/css/style.css">`)
+        .replace("{{EVENT_CSS}}", "")   // removed, we load event.css manually
         .replace("{{CORE_JS}}", `<script src="${coreDir}/js/core.js"></script>`)
-        .replace("{{EVENT_CSS}}", `<link rel="stylesheet" href="${eventDir}/event.css">`)
         .replace("{{EVENT_JS}}", `<script src="${eventDir}/event.js"></script>`)
         .trim();
 
     // 6. HTML setzen
     document.body.innerHTML = html;
 
-    // 7. Sichtbar machen (fixes FOUC)
-    const app = document.getElementById("app");
-    if (app) app.classList.remove("app-not-ready");
+    // 7. EVENT CSS dynamisch laden und WARTEN bis es fertig geladen ist
+    const eventCssLink = document.createElement("link");
+    eventCssLink.rel = "stylesheet";
+    eventCssLink.href = `${eventDir}/event.css`;
+
+    eventCssLink.onload = () => {
+        // Jetzt ist event.css vollständig geladen → App anzeigen
+        const app = document.getElementById("app");
+        if (app) {
+            app.classList.remove("app-not-ready");
+        }
+    };
+
+    document.head.appendChild(eventCssLink);
 
 })();
