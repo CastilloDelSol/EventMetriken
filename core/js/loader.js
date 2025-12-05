@@ -20,7 +20,7 @@ function normalizePath(path) {
     let coreDir = loaderDir.replace(/\/js$/, "");
     coreDir = normalizePath(coreDir);
 
-    // 3. Event dir (URL der Seite, wo index.html liegt)
+    // 3. Event dir (URL der Seite)
     const pageUrl = new URL(window.location.href);
     let eventDir = pageUrl.pathname.replace(/\/index\.html$/, "");
     eventDir = normalizePath(eventDir);
@@ -33,25 +33,17 @@ function normalizePath(path) {
     let html = template
         .replace(/{{EVENT_NAME}}/g, window.EVENT.name)
         .replace(/{{EVENT_YEAR}}/g, window.EVENT.year)
-        
-        // CSS: core first, then event (event overrides core)
         .replace("{{CORE_CSS}}", `<link rel="stylesheet" href="${coreDir}/css/style.css">`)
-        .replace("{{EVENT_CSS}}", `<link rel="stylesheet" href="${eventDir}/event.css">`)
-        
-        // JS: core first, then event
         .replace("{{CORE_JS}}", `<script src="${coreDir}/js/core.js"></script>`)
+        .replace("{{EVENT_CSS}}", `<link rel="stylesheet" href="${eventDir}/event.css">`)
         .replace("{{EVENT_JS}}", `<script src="${eventDir}/event.js"></script>`)
         .trim();
 
-    // 6. Template rendern
+    // 6. HTML setzen
     document.body.innerHTML = html;
 
-    // 7. Sichtbar machen, wenn alles (inkl. CSS) geladen ist
-    window.addEventListener("load", () => {
-        const app = document.getElementById("app");
-        if (app) {
-            app.classList.remove("app-not-ready");
-        }
-    });
+    // 7. Sichtbar machen (fixes FOUC)
+    const app = document.getElementById("app");
+    if (app) app.classList.remove("app-hidden");
 
 })();
