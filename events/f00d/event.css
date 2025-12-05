@@ -1,9 +1,13 @@
-/* Global styling for event f00d */
+/* Event-wide design overrides */
 
 .header {
-    background: #03d65f; /* green */
+  background: #0066aa;
 }
 
 .content h2 {
-    color: #0077cc;
+  color: #0066aa;
+}
+
+a {
+  color: #0066aa;
 }
