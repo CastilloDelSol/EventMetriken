@@ -1,27 +1,29 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #fafafa;
-  color: #222;
-}
-
-.header {
-  background: #333;
-  color: white;
-  padding: 20px;
-}
-
-.content {
-  padding: 20px;
-}
-
-.footer {
-  margin-top: 40px;
-  padding: 15px;
-  text-align: center;
-  color: #777;
-}
-
+/* Hide app until loader finishes (prevents FOUC) */
 .app-not-ready {
-    visibility: hidden;   /* The app container starts invisible to prevent FOUC (Flash Of Unstyled Content) */
+    visibility: hidden;
+}
+
+/* ---- CORE STYLES WRAPPED IN .core FOR LOWER SPECIFICITY ---- */
+.core body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fafafa;
+    color: #222;
+}
+
+.core .header {
+    background: #333;
+    color: white;
+    padding: 20px;
+}
+
+.core .content {
+    padding: 20px;
+}
+
+.core .footer {
+    margin-top: 40px;
+    padding: 15px;
+    text-align: center;
+    color: #777;
 }
