@@ -33,10 +33,15 @@ function normalizePath(path) {
     let html = template
         .replace(/{{EVENT_NAME}}/g, window.EVENT.name)
         .replace(/{{EVENT_YEAR}}/g, window.EVENT.year)
-        .replace("{{CORE_CSS}}", `<link rel="stylesheet" href="${coreDir}/css/style.css">`)
-        .replace("{{CORE_JS}}", `<script src="${coreDir}/js/core.js"></script>`)
+
+        // CSS: event first → core second
         .replace("{{EVENT_CSS}}", `<link rel="stylesheet" href="${eventDir}/event.css">`)
+        .replace("{{CORE_CSS}}", `<link rel="stylesheet" href="${coreDir}/css/style.css">`)
+
+        // JS: core first → event second
+        .replace("{{CORE_JS}}", `<script src="${coreDir}/js/core.js"></script>`)
         .replace("{{EVENT_JS}}", `<script src="${eventDir}/event.js"></script>`)
+
         .trim();
 
     // 6. HTML setzen
