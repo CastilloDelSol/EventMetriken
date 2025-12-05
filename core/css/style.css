@@ -21,3 +21,7 @@ body {
   text-align: center;
   color: #777;
 }
+
+.app-not-ready {
+    visibility: hidden;   /* The app container starts invisible to prevent FOUC (Flash Of Unstyled Content) */
+}
