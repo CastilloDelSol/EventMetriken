@@ -49,15 +49,9 @@ function normalizePath(path) {
     */
 
     // 7. App erst sichtbar machen, wenn ALLES geladen ist (inkl. event.css)
-    /*
     window.addEventListener("load", () => {
         const app = document.getElementById("app");
         if (app) app.classList.remove("app-not-ready");
-    });*/
-    
-    window.addEventListener("load", () => {
-    document.body.style.visibility = "visible";
     });
-
 
 })();
