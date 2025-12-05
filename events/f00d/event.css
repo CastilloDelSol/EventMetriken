@@ -1,0 +1,9 @@
+/* Global styling for event f00d */
+
+.header {
+    background: #03d65f; /* green */
+}
+
+.content h2 {
+    color: #0077cc;
+}
