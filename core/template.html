@@ -9,29 +9,31 @@
 </head>
 
 <body>
-
-<header class="header">
-    <h1>{{EVENT_NAME}} ({{EVENT_YEAR}})</h1>
-</header>
-
-<main class="content">
-    <section>
-        <h2>Results</h2>
-        <div id="results"></div>
-    </section>
-
-    <section>
-        <h2>Statistics</h2>
-        <div id="statistics"></div>
-    </section>
-</main>
-
-<footer class="footer">
-    Powered by EventMetriken
-</footer>
+<div id="app" class="app-hidden">
+    <header class="header">
+        <h1>{{EVENT_NAME}} ({{EVENT_YEAR}})</h1>
+    </header>
+    
+    <main class="content">
+        <section>
+            <h2>Results</h2>
+            <div id="results"></div>
+        </section>
+    
+        <section>
+            <h2>Statistics</h2>
+            <div id="statistics"></div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        Powered by EventMetriken
+    </footer>
+</div>
 
 {{CORE_JS}}
 {{EVENT_JS}}
 
 </body>
 </html>
+
